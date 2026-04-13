@@ -86,18 +86,43 @@
             margin: 0 auto;
             padding: 0 20px;
             display: grid;
-            grid-template-columns: 1fr auto 1fr;
+            /* SE CAMBIÓ LA ESTRUCTURA DEL GRID: ahora son solo 2 columnas */
+            grid-template-columns: auto 1fr;
             align-items: center;
         }
-        .conagua-logo { display: flex; align-items: center; justify-content: flex-start; }
+        .conagua-logo {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            /* SE AÑADIÓ ESPACIADO A LA DERECHA DEL LOGO */
+            padding-right: 20px;
+        }
         .conagua-logo img { height: 42px; display: block; }
-        .bivas-brand-texts { text-align: center; color: white; display: flex; flex-direction: column; justify-content: center; }
-        .bivas-title { font-size: 26px; font-weight: 800; margin: 0; letter-spacing: 1px; line-height: 1.1; }
-        .bivas-subtitle { font-size: 11px; font-weight: 300; margin: 4px 0 0 0; opacity: 0.9; letter-spacing: 0.5px; text-transform: uppercase; }
-        .bivas-menu-wrapper { display: flex; justify-content: flex-end; }
+
+        /* NUEVA CLASE PARA EL TEXTO DEL ENCABEZADO */
+        .header-main-text {
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .main-title {
+            font-size: 18px; /* Ajuste para el texto largo */
+            font-weight: 800;
+            margin: 0;
+            letter-spacing: 0.5px;
+            line-height: 1.1;
+        }
+
+        .bivas-menu-wrapper {
+            display: flex;
+            justify-content: flex-end;
+            /* SE AÑADIÓ padding para que el menú flote al extremo */
+            margin-left: auto;
+        }
         .bivas-dropdown { position: relative; list-style: none; }
         .bivas-dropbtn { color: white; text-decoration: none; font-weight: 600; font-size: 13px; display: flex; align-items: center; gap: 7px; cursor: pointer; padding: 25px 0; }
-        .bivas-dropdown-content { display: none; position: absolute; background-color: white; min-width: 150px; box-shadow: 0 8px 16px rgba(0,0,0,0.15); z-index: 1001; right: 0; border-radius: 4px; }
+        .bivas-dropdown-content { display: none; position: absolute; background-color: white; min-width: 150px; box-shadow: 0 8px 166px rgba(0,0,0,0.15); z-index: 1001; right: 0; border-radius: 4px; }
         .bivas-dropdown-content a { color: #333; padding: 12px 16px; text-decoration: none; display: block; font-size: 13px; }
         .bivas-dropdown-content a:hover { background-color: #f5f5f5; }
         .bivas-dropdown:hover .bivas-dropdown-content { display: block; }
@@ -248,8 +273,6 @@
         /* =====================================================
            LAYOUT DE FILTROS (escritorio)
            ===================================================== */
-
-        /* Fila del contador + botón exportar */
         .filter-results-row {
             display: flex;
             justify-content: space-between;
@@ -264,7 +287,6 @@
             color: #333;
             font-weight: 600;
         }
-        /* */
         .filter-results-row .filter-group-texto label {
             margin-bottom: 0;
         }
@@ -272,7 +294,6 @@
             padding: 10px 0;
         }
 
-        /* Caja con borde: ID + Título + Limpiar */
         .filter-secondary-box {
             border: 1px solid #ccc;
             border-radius: 6px;
@@ -285,18 +306,16 @@
             gap: 14px;
         }
         
-        /* --- NUEVO CSS PARA ANIMACIÓN DEL BUSCADOR ID --- */
         .filter-group-id  { 
             flex: 0 0 auto; 
             display: flex;
             align-items: center;
             justify-content: flex-start;
             gap: 10px;
-            min-width: 200px; /* Ancho base para el texto */
+            min-width: 200px; 
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* El disparador: texto y lupa */
         .search-trigger {
             display: flex;
             align-items: center;
@@ -312,7 +331,6 @@
             color: #A57F2C;
         }
 
-        /* El input oculto inicialmente */
         .input-slide {
             width: 0;
             opacity: 0;
@@ -320,12 +338,11 @@
             margin: 0;
             border: 1px solid transparent;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            pointer-events: none; /* No clickable mientras está oculto */
+            pointer-events: none; 
         }
 
-        /* Clase de activación (Añadida por JS) */
         .filter-group-id.active .input-slide {
-            width: 130px; /* Ajusta el ancho deseado de la caja */
+            width: 130px; 
             opacity: 1;
             padding: 8px;
             border: 1px solid #ccc;
@@ -333,7 +350,6 @@
             margin-left: 10px;
         }
 
-        /* Ocultar el texto suavemente cuando esté activo */
         .filter-group-id.active .search-trigger span {
             width: 0;
             opacity: 0;
@@ -352,29 +368,10 @@
         }
 
         /* =====================================================
-           COLUMNA ESTADOS — ancho fijo escritorio
-           ===================================================== */
-        .results-table table {
-            table-layout: fixed;
-            width: 100%;
-        }
-        .results-table table th:nth-child(3),
-        .results-table table td:nth-child(3) {
-            width: 160px;
-            min-width: 160px;
-            max-width: 160px;
-            white-space: normal;
-            word-break: break-word;
-            overflow-wrap: break-word;
-            vertical-align: top;
-        }
-
-        /* =====================================================
            RESPONSIVO — MÓVILES (< 768px)
            ===================================================== */
         @media screen and (max-width: 768px) {
 
-            /* --- Header BiVAS compacto --- */
             .gob-nav { display: none; }
             .bivas-header { height: auto; }
             .bivas-container {
@@ -382,18 +379,21 @@
                 gap: 8px;
                 padding: 12px 16px;
             }
-            .conagua-logo { justify-content: center; }
-            .bivas-brand-texts { font-size: 90%; }
-            .bivas-title { font-size: 20px; }
-            .bivas-subtitle { font-size: 9px; }
-            .bivas-menu-wrapper { justify-content: center; }
-            .bivas-dropbtn { padding: 8px 0; }
+            .conagua-logo {
+                justify-content: center;
+                padding-right: 0; /* SE QUITÓ EL PADDING EN MÓVIL */
+            }
+            /* SE AJUSTÓ EL TEXTO PARA MÓVIL */
+            .header-main-text {
+                text-align: center;
+            }
+            .main-title {
+                font-size: 16px;
+            }
 
-            /* --- Footer compacto --- */
             .footer-container { grid-template-columns: 1fr; text-align: center; }
             .footer-col h5 { border-bottom: none; }
 
-            /* --- Filtros apilados --- */
             .filter-secondary-inner {
                 flex-direction: column;
                 align-items: stretch;
@@ -404,7 +404,6 @@
                 width: 100%;
             }
             
-            /* Ajuste responsivo para el input animado */
             .filter-group-id.active .input-slide {
                 width: 100%;
                 margin-left: 0;
@@ -430,12 +429,10 @@
                 padding: 12px;
             }
 
-            /* --- Ocultar encabezado de tabla --- */
             .results-table thead {
                 display: none !important;
             }
 
-            /* --- Tabla en modo bloque para tarjetas --- */
             .results-table,
             .results-table table,
             .results-table tbody {
@@ -444,7 +441,6 @@
                 overflow: hidden;
             }
 
-            /* --- Cada fila se convierte en una tarjeta --- */
             .results-table tr {
                 display: block;
                 width: 100%;
@@ -456,7 +452,6 @@
                 overflow: hidden;
             }
 
-            /* --- Cada celda en fila con etiqueta izquierda --- */
             .results-table td {
                 display: flex;
                 justify-content: space-between;
@@ -465,14 +460,12 @@
                 border-bottom: 1px solid #eee;
                 width: 100%;
                 box-sizing: border-box;
-                /* Respetar saltos de línea del script */
                 white-space: normal !important;
                 word-break: break-word;
                 max-width: none !important;
                 min-width: unset !important;
             }
 
-            /* --- Etiquetas data-label en color institucional --- */
             .results-table td::before {
                 content: attr(data-label);
                 font-weight: bold;
@@ -482,7 +475,6 @@
                 margin-right: 10px;
             }
 
-            /* --- Título: columna vertical, máx 3 líneas --- */
             .results-table td[data-label="TÍTULO"] {
                 flex-direction: column;
                 align-items: flex-start;
@@ -497,12 +489,10 @@
                 margin-bottom: 4px;
             }
 
-            /* --- Iconos más grandes para tacto --- */
             .results-table td i {
                 font-size: 1.4rem;
             }
 
-            /* --- PDFs en tarjeta: alinear a la derecha --- */
             .pdf-container {
                 justify-content: flex-end;
                 width: 100%;
@@ -512,7 +502,6 @@
                 min-height: 50px;
             }
 
-            /* --- Paginación más compacta --- */
             .pagination button {
                 padding: 6px 10px;
                 font-size: 0.85rem;
@@ -545,17 +534,17 @@
             <div class="conagua-logo">
                 <img src="images/Logo_CONAGUA_W_I.png" alt="CONAGUA" onerror="this.src='https://www.gob.mx/cms/uploads/image/file/487383/conagua-logo-300.png'">
             </div>
-            <div class="bivas-brand-texts">
-                <h1 class="bivas-title">BiVAS</h1>
-                <p class="bivas-subtitle">BIBLIOTECA VIRTUAL DE AGUAS SUBTERRÁNEAS</p>
-            </div>
-            <div class="bivas-menu-wrapper">
-                <div class="bivas-dropdown">
-                    <a class="bivas-dropbtn">INFORMACIÓN <i class="fa-solid fa-chevron-down" style="font-size: 0.75rem;"></i></a>
-                    <div class="bivas-dropdown-content">
-                        <a href="#" id="btn-acerca-de">Acerca de</a>
-                        <a href="./docs/Manual Usuario Básico Tablero de Consulta de Estudios de la BiVAS.pdf" id="btn-acerca-de">Manual del Usuario</a>
-
+            
+            <div class="header-main-text" style="display: flex; flex-direction: row; align-items: center; width: 100%;">
+                <h1 class="main-title">Gerencia de Aguas Subterráneas | Biblioteca Virtual de Aguas Subterráneas</h1>
+                
+                <div class="bivas-menu-wrapper">
+                    <div class="bivas-dropdown">
+                        <a class="bivas-dropbtn">INFORMACIÓN <i class="fa-solid fa-chevron-down" style="font-size: 0.75rem;"></i></a>
+                        <div class="bivas-dropdown-content">
+                            <a href="#" id="btn-acerca-de">Acerca de</a>
+                            <a href="./docs/Manual Usuario Básico Tablero de Consulta de Estudios de la BiVAS.pdf" target="_blank">Manual del Usuario</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -572,62 +561,62 @@
             <main>
                 <section class="filters">
 
-    <div class="filter-group">
-        <label for="filtro-estado">1. Selecciona un Estado:</label>
-        <select id="filtro-estado"><option value="">-- Todos los Estados --</option></select>
-    </div>
+                    <div class="filter-group">
+                        <label for="filtro-estado">1. Selecciona un Estado:</label>
+                        <select id="filtro-estado"><option value="">-- Todos los Estados --</option></select>
+                    </div>
 
-    <div class="filter-group">
-        <label for="filtro-acuifero">2. Selecciona un Acuífero:</label>
-        <select id="filtro-acuifero"><option value="">-- Todos los Acuíferos --</option></select>
-    </div>
+                    <div class="filter-group">
+                        <label for="filtro-acuifero">2. Selecciona un Acuífero:</label>
+                        <select id="filtro-acuifero"><option value="">-- Todos los Acuíferos --</option></select>
+                    </div>
 
-    <div class="filter-results-row" style="border-bottom: none; margin-bottom: 0;">
-        <div class="filter-secondary-inner" style="width: 100%; display: flex; align-items: center; gap: 20px;">
-            
-            <div class="filter-group filter-group-id" id="container-id-search" style="margin-bottom: 0;">
-                <div class="search-trigger" id="trigger-id" title="Haz clic para buscar por ID">
-                    <span>Buscar por ID</span>
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </div>
-                <input type="text" id="filtro-id" placeholder="Ej. 1894" class="input-slide">
-            </div>
+                    <div class="filter-results-row" style="border-bottom: none; margin-bottom: 0;">
+                        <div class="filter-secondary-inner" style="width: 100%; display: flex; align-items: center; gap: 20px;">
+                            
+                            <div class="filter-group filter-group-id" id="container-id-search" style="margin-bottom: 0;">
+                                <div class="search-trigger" id="trigger-id" title="Haz clic para buscar por ID">
+                                    <span>Buscar por ID</span>
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </div>
+                                <input type="text" id="filtro-id" placeholder="Ej. 1894" class="input-slide">
+                            </div>
 
-            <div class="filter-group filter-group-texto" style="margin-bottom: 0; display: flex; align-items: center; gap: 10px; flex: 1;">
-                <label for="filtro-texto" style="margin-bottom: 0; white-space: nowrap;">Palabra Clave:</label>
-                <input type="text" id="filtro-texto" placeholder="Buscar en el título..." style="width: 100%;">
-            </div>
+                            <div class="filter-group filter-group-texto" style="margin-bottom: 0; display: flex; align-items: center; gap: 10px; flex: 1;">
+                                <label for="filtro-texto" style="margin-bottom: 0; white-space: nowrap;">Palabra Clave:</label>
+                                <input type="text" id="filtro-texto" placeholder="Buscar en el título..." style="width: 100%;">
+                            </div>
 
-        </div>
-    </div>
+                        </div>
+                    </div>
 
-    <div class="filter-secondary-box" style="margin-top: 10px;">
-        <div class="filter-secondary-inner" style="display: flex; justify-content: space-between; align-items: center;">
-            
-            <div style="display: flex; align-items: center; gap: 20px;">
-                <span id="contador-resultados" style="font-weight: 600; color: #333;">Calculando...</span>
-                <button id="btn-exportar" class="btn-export">
-                    <i class="fa-solid fa-file-excel"></i> Exportar a CSV (Excel)
-                </button>
-            </div>
+                    <div class="filter-secondary-box" style="margin-top: 10px;">
+                        <div class="filter-secondary-inner" style="display: flex; justify-content: space-between; align-items: center;">
+                            
+                            <div style="display: flex; align-items: center; gap: 20px;">
+                                <span id="contador-resultados" style="font-weight: 600; color: #333;">Calculando...</span>
+                                <button id="btn-exportar" class="btn-export">
+                                    <i class="fa-solid fa-file-excel"></i> Exportar a CSV (Excel)
+                                </button>
+                            </div>
 
-            <div class="filter-group-limpiar">
-                <button id="btn-limpiar-filtros" class="btn-clear">
-                    <i class="fa-solid fa-rotate-left"></i> Limpiar Filtros
-                </button>
-            </div>
-        </div>
-    </div>
+                            <div class="filter-group-limpiar">
+                                <button id="btn-limpiar-filtros" class="btn-clear">
+                                    <i class="fa-solid fa-rotate-left"></i> Limpiar Filtros
+                                </button>
+                            </div>
+                        </div>
+                    </div>
 
-</section>
+                </section>
 
                 <div class="results-table">
                     <table>
                         <thead>
                             <tr>
-                                <th style="cursor:pointer;" onclick="ordenarTabla('NORMALIZED_ID')">ID <i class="fa-solid fa-sort"></i></th>
-                                <th style="cursor:pointer; text-align:left;" onclick="ordenarTabla('TITULO_BUSQUEDA')">TÍTULO <i class="fa-solid fa-sort"></i></th>
-                                <th style="cursor:pointer;" onclick="ordenarTabla('AÑO')">AÑO <i class="fa-solid fa-sort"></i></th>
+                                <th>ID</th>
+                                <th>TÍTULO</th>
+                                <th>AÑO</th>
                                 <th>VISTA RÁPIDA</th>
                                 <th>ESTUDIO</th>
                             </tr>
@@ -642,14 +631,13 @@
         </div>
     </div>
 
-     <section class="info-contact-section">
+    <section class="info-contact-section">
         <div class="info-contact-container">
-        ℹ️ Dudas, comentarios, sugerencias o cualquier asunto relacionado con el acervo contenido en la BiVAS, favor de enviar un mensaje de correo electrónico📧 a: <strong><a href="mailto:biblioteca_sgt_gas@conagua.gob.mx">biblioteca_sgt_gas@conagua.gob.mx</a></strong>, y con gusto le atenderemos.
+            Dudas, comentarios, sugerencias o cualquier asunto relacionado con el acervo contenido en la BiVAS, favor de enviar un mensaje de correo electrónico a <strong><a href="mailto:biblioteca_sgt_gas@conagua.gob.mx">biblioteca_sgt_gas@conagua.gob.mx</a></strong>, y con gusto le atenderemos.
         <p>
-            📚 Para consultar los documentos dentro de la biblioteca agradeceremos su visita en: Avenida Insurgentes Sur No. 2416, planta baja, Colonia Copilco El Bajo, Alcaldía Coyoacán, Ciudad de México, México, C.P. 04340 (indispensable identificación vigente y solicitar por correo electrónico clave de acceso).
+            Para consultar los documentos dentro de la biblioteca agradeceremos su visita en: Avenida Insurgentes Sur No. 2416, planta baja, Colonia Copilco El Bajo, Alcaldía Coyoacán, Ciudad de México, México, C.P. 04340 (indispensable identificación vigente y solicitar por correo electrónico clave de acceso).
 
         </p>
-        <p>📅 El horario de atención en la Biblioteca es de Lunes a Viernes de 9:00 a 14:00hrs y de 16:00 a 18:00hrs</p>
         </div>
     </section>
 
@@ -694,10 +682,8 @@
             <h3 style="margin:0; font-size:16px; font-weight:600;">Gerencia de Aguas Subterráneas</h3>
 
             <p style="margin-top: 15px;">Consulta del Acervo de Estudios de la Biblioteca de Aguas Subterráneas, realizado por la Subgerencia de Información Geográfica del Agua (SIGA).</p>
-            <p style="margin-top: 15px;">Versión 10.3</p>           
+            <p style="margin-top: 15px;">Versión 10.2</p>           
             <p style="margin-top: 15px;">Actualizado el 15 de abril de 2026</p>
-
-
 
         </div>
 
@@ -707,7 +693,7 @@
     </div>
 </div>
 
-    <script src="assets/js/script20.js"></script>
+    <script src="assets/js/script.js"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
